@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #008236;
+  --color-brand-hover: #006e2e;
+  --color-brand-active: #005a26;
+  --color-brand-light: #e6f3eb;
+  --color-brand-50: #f0fdf4;
+  --color-brand-100: #dcfce7;
+  --color-brand-600: #008236;
+  --color-brand-700: #006e2e;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent auto zoom on iOS Safari by ensuring at least 16px font size on mobile inputs */
+@media (max-width: 640px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Safe area for iPhones with Home Indicator bar */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 16px);
+}
+
+.btn-primary {
+  background-color: #008236;
+  color: #ffffff;
+  transition: all 0.15s ease-in-out;
+}
+.btn-primary:hover {
+  background-color: #006e2e;
+}
+.btn-primary:active {
+  background-color: #005a26;
+}
+
+@keyframes orderBtnPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 20px -2px rgba(0, 130, 54, 0.45);
+  }
+  50% {
+    transform: scale(1.025);
+    box-shadow: 0 8px 30px 2px rgba(0, 130, 54, 0.7);
+  }
+}
+
+@keyframes shimmerSlide {
+  0% {
+    transform: translateX(-100%) skewX(-20deg);
+  }
+  50%, 100% {
+    transform: translateX(220%) skewX(-20deg);
+  }
+}
+
+@keyframes shakeError {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.animate-order-pulse {
+  animation: orderBtnPulse 2.2s infinite ease-in-out;
+}
+
+.animate-shimmer {
+  animation: shimmerSlide 3s infinite linear;
+}
+
+.animate-shake {
+  animation: shakeError 0.45s ease-in-out;
+}
+
+/* Elegant thin dark scrollbar for admin sidebars */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+
+
