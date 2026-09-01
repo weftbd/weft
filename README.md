@@ -1,10 +1,7 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
 
 <h1> Develop By Mahfujur Rahman </h1>
-<h1> To make  </h1>
-<h1> xmahfujur@gmail.com</h1>
+<h3> To make  </h3>
+<h3> xmahfujur@gmail.com</h3>
 
 ## Run Locally
 
