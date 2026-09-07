@@ -1,0 +1,71 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Oxford cotton shirt catalog items and variations",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "description": { "type": "string" },
+        "price": { "type": "number" },
+        "originalPrice": { "type": "number" },
+        "discountAmount": { "type": "number" },
+        "active": { "type": "boolean" },
+        "featured": { "type": "boolean" },
+        "availableSizes": { "type": "array", "items": { "type": "string" } },
+        "stock": { "type": "object" },
+        "sortOrder": { "type": "number" },
+        "colorHex": { "type": "string" },
+        "badge": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "name", "price", "active"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer e-commerce orders",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "orderNumber": { "type": "string" },
+        "items": { "type": "array" },
+        "customer": { "type": "object" },
+        "shipping": { "type": "number" },
+        "subtotal": { "type": "number" },
+        "total": { "type": "number" },
+        "orderStatus": { "type": "string" },
+        "paymentMethod": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "orderNumber", "items", "customer", "total", "orderStatus"]
+    },
+    "Setting": {
+      "title": "Setting",
+      "description": "Global CMS and store settings",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "data": { "type": "object" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Shirt product models and inventory"
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Customer cash-on-delivery orders"
+    },
+    "/settings/{settingId}": {
+      "schema": "Setting",
+      "description": "Landing page CMS, size chart, shipping, and footer content"
+    }
+  }
+}
