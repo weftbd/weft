@@ -1,0 +1,120 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Oxford cotton shirt catalog items and variations",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 300 },
+        "slug": { "type": "string", "maxLength": 300 },
+        "description": { "type": "string", "maxLength": 5000 },
+        "price": { "type": "number" },
+        "originalPrice": { "type": "number" },
+        "discountAmount": { "type": "number" },
+        "active": { "type": "boolean" },
+        "featured": { "type": "boolean" },
+        "availableSizes": { "type": "array" },
+        "stock": { "type": "object" },
+        "sortOrder": { "type": "number" },
+        "colorHex": { "type": "string", "maxLength": 32 },
+        "badge": { "type": "string", "maxLength": 120 },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "name", "price", "active"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer e-commerce orders",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "orderNumber": { "type": "string", "maxLength": 128 },
+        "items": { "type": "array" },
+        "customer": { "type": "object" },
+        "shipping": { "type": "number" },
+        "subtotal": { "type": "number" },
+        "discount": { "type": "number" },
+        "total": { "type": "number" },
+        "orderStatus": { "type": "string", "maxLength": 64 },
+        "paymentMethod": { "type": "string", "maxLength": 64 },
+        "paymentStatus": { "type": "string", "maxLength": 64 },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "orderNumber", "items", "customer", "total", "orderStatus"]
+    },
+    "SiteSetting": {
+      "title": "SiteSetting",
+      "description": "Global CMS, homepage, store, and footer settings",
+      "type": "object",
+      "properties": {
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      }
+    },
+    "SizeChart": {
+      "title": "SizeChart",
+      "description": "Product measurement size chart",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 200 },
+        "columns": { "type": "array" },
+        "rows": { "type": "array" },
+        "note": { "type": "string", "maxLength": 1000 }
+      }
+    },
+    "ShippingMethod": {
+      "title": "ShippingMethod",
+      "description": "Delivery zone and shipping charge configuration",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 200 },
+        "charge": { "type": "number" },
+        "active": { "type": "boolean" },
+        "estimatedTime": { "type": "string", "maxLength": 120 }
+      },
+      "required": ["id", "name", "charge", "active"]
+    },
+    "FAQItem": {
+      "title": "FAQItem",
+      "description": "Frequently asked question entry",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "question": { "type": "string", "maxLength": 500 },
+        "answer": { "type": "string", "maxLength": 5000 },
+        "sortOrder": { "type": "number" },
+        "active": { "type": "boolean" }
+      },
+      "required": ["id", "question", "answer", "active"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Shirt product models and inventory shared across all domains"
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Customer cash-on-delivery orders shared across all domains"
+    },
+    "/siteSettings/{settingId}": {
+      "schema": "SiteSetting",
+      "description": "Homepage CMS, store configuration, and footer settings"
+    },
+    "/sizeCharts/{chartId}": {
+      "schema": "SizeChart",
+      "description": "Size chart table configuration"
+    },
+    "/shippingMethods/{methodId}": {
+      "schema": "ShippingMethod",
+      "description": "Delivery methods and shipping fees"
+    },
+    "/faqs/{faqId}": {
+      "schema": "FAQItem",
+      "description": "Storefront FAQ items"
+    }
+  }
+}

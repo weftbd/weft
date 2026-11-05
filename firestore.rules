@@ -1,0 +1,63 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    // Connection health check
+    match /test/{docId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Products catalog (shared across all storefront domains & admin portal)
+    match /products/{productId} {
+      allow read: if true;
+      allow create, update: if isValidId(productId)
+        && incoming().name is string && incoming().name.size() <= 300
+        && incoming().price is number && incoming().price >= 0;
+      allow delete: if isValidId(productId);
+    }
+
+    // Customer orders (Cash on Delivery checkout & admin order management)
+    match /orders/{orderId} {
+      allow read: if true;
+      allow create, update: if isValidId(orderId)
+        && incoming().total is number && incoming().total >= 0;
+      allow delete: if isValidId(orderId);
+    }
+
+    // Site settings (homepage, store, footer)
+    match /siteSettings/{settingId} {
+      allow read: if true;
+      allow create, update, delete: if isValidId(settingId);
+    }
+
+    // Size charts
+    match /sizeCharts/{chartId} {
+      allow read: if true;
+      allow create, update, delete: if isValidId(chartId);
+    }
+
+    // Shipping methods
+    match /shippingMethods/{methodId} {
+      allow read: if true;
+      allow create, update, delete: if isValidId(methodId);
+    }
+
+    // FAQs
+    match /faqs/{faqId} {
+      allow read: if true;
+      allow create, update, delete: if isValidId(faqId);
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

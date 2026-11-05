@@ -1,0 +1,10 @@
+{
+  "projectId": "taarok-official",
+  "appId": "1:652099493300:web:3e0f6c89670ed9e97c66e1",
+  "apiKey": "AIzaSyCtIO64LT4OMhvWdsb2O3Atou6-YXxoanc",
+  "authDomain": "taarok-official.firebaseapp.com",
+  "firestoreDatabaseId": "(default)",
+  "storageBucket": "taarok-official.firebasestorage.app",
+  "messagingSenderId": "652099493300",
+  "measurementId": "G-EXQ7WS32QM"
+}
